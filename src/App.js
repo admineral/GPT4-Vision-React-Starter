@@ -8,6 +8,8 @@ function App() {
   const [statusMessage, setStatusMessage] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
   const [dragOver, setDragOver] = useState(false);
+  const [textInput, setTextInput] = useState('');
+  const [selectedOption, setSelectedOption] = useState('low');
 
   const handleFileChange = useCallback((selectedFile) => {
     setFile(selectedFile);
@@ -40,22 +42,23 @@ function App() {
             "content": [
               {
                 "type": "text",
-                "text": "What’s in this image?"
+                "text": textInput
               },
               {
                 "type": "image_url",
                 "image_url": {
-                  "url": `data:image/jpeg;base64,${base64String}`
+                  "url": `data:image/jpeg;base64,${base64String}`,
+                  "detail": selectedOption,
                 }
               }
             ]
           }
         ],
-        max_tokens: 300
+        max_tokens: 4000
       };
 
       try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const response = await fetch('https://gpt.alizoed.top/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -111,7 +114,23 @@ function App() {
 
   return (
     <div className="App">
-      <h1>OpenAI Image Analysis</h1>
+      <h1>OpenAI 图片分析</h1>
+
+      {/* 添加文本输入框 */}
+      <input
+        type="text"
+        value={textInput}
+        onChange={(e) => setTextInput(e.target.value)}
+        placeholder="请描述你的问题"
+        className="text-input"
+      />
+
+      <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)} className="dropdown">
+        <option value="low">Low</option>
+        <option value="high">High</option>
+        <option value="auto">Auto</option>
+      </select>
+
       <div 
         className={`drop-area ${dragOver ? 'drag-over' : ''}`}
         onDrop={handleDrop}
@@ -129,7 +148,7 @@ function App() {
         {preview ? (
           <img src={preview} alt="Preview" className="image-preview" />
         ) : (
-          <p>Drag and drop an image here, or click to select an image to upload.</p>
+          <p>点击上传图片</p>
         )}
       </div>
       {statusMessage && <p className="status-message">{statusMessage}</p>}
@@ -137,7 +156,7 @@ function App() {
         <progress value={uploadProgress} max="100"></progress>
       )}
       <button onClick={handleSubmit} className="analyze-button">
-        Analyze Image
+        开始分析
       </button>
       {result && (
         <div className="result">
