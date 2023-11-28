@@ -1,3 +1,8 @@
+.text-input {
+  height: 40px; /* 设置更高的高度 */
+  width: 300px; /* 根据需要调整宽度 */
+}
+
 .App {
   text-align: center;
   max-width: 600px;
