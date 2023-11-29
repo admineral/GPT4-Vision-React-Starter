@@ -1,6 +1,10 @@
 
 # OpenAI GPT-4 Vision API Image Analyzer
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-green.svg)](https://gpt-4-vision-react-starter.vercel.app)[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fadmineral%2FGPT4-Vision-React-Starter&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=gpt-4-vision-react-starter&repository-name=GPT4-Vision-React-Starter)
+
+
+
 This project is a sleek and user-friendly web application built with React/Nextjs. It utilizes the cutting-edge capabilities of OpenAI's GPT-4 Vision API to analyze images and provide detailed descriptions of their content. With a simple drag-and-drop or file upload interface, users can quickly get insights into their images.
 
 ## Features
@@ -12,9 +16,7 @@ This project is a sleek and user-friendly web application built with React/Nextj
 - Progress bar for upload status
 - Display of analysis results in a readable format
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fadmineral%2FGPT4-Vision-React-Starter&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=gpt-4-vision-react-starter&repository-name=GPT4-Vision-React-Starter)
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-green.svg)](https://gpt-4-vision-react-starter.vercel.app)
 
 ## Getting Started
 
