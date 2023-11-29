@@ -1,6 +1,6 @@
 "use client"
 
-
+import ChatComponent from './ChatComponent';
 import React, { useState, useCallback } from 'react';
 import { convertFileToBase64 } from './utils/convertFileToBase64';
 
@@ -16,14 +16,19 @@ const App: React.FC = () => {
   const [textInput, setTextInput] = useState<string>(''); // Custom text input by the user
   const [selectedOption, setSelectedOption] = useState<string>('off'); // Option for detail level of analysis
   const [maxTokens, setMaxTokens] = useState<number>(50); // Max tokens for analysis
+  const [base64Image, setBase64Image] = useState<string>('');
 
   // Callback for handling file selection changes
-  const handleFileChange = useCallback((selectedFile: File) => {
+  const handleFileChange = useCallback(async (selectedFile: File) => {
     // Updating state with the new file and its preview URL
     setFile(selectedFile);
     setPreview(URL.createObjectURL(selectedFile));
     setStatusMessage('Image selected. Click "Analyze Image" to proceed.');
     setUploadProgress(0);
+
+    // Convert the file to a base64 string and store it in the state
+    const base64 = await convertFileToBase64(selectedFile);
+    setBase64Image(base64);
   }, []);
 
   // Function to handle submission for image analysis
@@ -33,50 +38,39 @@ const App: React.FC = () => {
       setStatusMessage('No file selected!');
       return;
     }
-  
-    setStatusMessage('Converting image...');
-    setUploadProgress(20); // Progress after starting image conversion
-  
-    try {
-      // Convert the file to a base64 string
-      const base64Image = await convertFileToBase64(file);
-  
-      setStatusMessage('Sending request...');
-      setUploadProgress(40); // Progress after image conversion
-  
-      // Send a POST request to your API endpoint
-      const response = await fetch('/api/upload_gpt4v', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          file: base64Image, 
-          prompt: textInput, 
-          detail: selectedOption !== 'off' ? selectedOption : undefined, 
-          max_tokens: maxTokens 
-        }),
-      });
-  
-      setUploadProgress(60); // Progress after sending request
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const apiResponse = await response.json();
-      setUploadProgress(80); // Progress after receiving response
-  
-      if (apiResponse.success) {
-        setResult(apiResponse.analysis);
-        setStatusMessage('Analysis complete.');
-        setUploadProgress(100); // Final progress
-      } else {
-        setStatusMessage(apiResponse.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setStatusMessage('An error occurred during the analysis.');
+
+    setStatusMessage('Sending request...');
+    setUploadProgress(40); // Progress after image conversion
+
+    // Send a POST request to your API endpoint
+    const response = await fetch('/api/upload_gpt4v', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        file: base64Image, 
+        prompt: textInput, 
+        detail: selectedOption !== 'off' ? selectedOption : undefined, 
+        max_tokens: maxTokens 
+      }),
+    });
+
+    setUploadProgress(60); // Progress after sending request
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const apiResponse = await response.json();
+    setUploadProgress(80); // Progress after receiving response
+
+    if (apiResponse.success) {
+      setResult(apiResponse.analysis);
+      setStatusMessage('Analysis complete.');
+      setUploadProgress(100); // Final progress
+    } else {
+      setStatusMessage(apiResponse.message);
     }
   };
 
@@ -102,6 +96,7 @@ const App: React.FC = () => {
   // JSX for the component rendering
 
   return (
+    <div className="flex">
     <div className="text-center mx-auto my-5 p-5 border border-gray-300 rounded-lg max-w-md">
       <h1 className="text-xl font-bold mb-5">OpenAI Image Analysis</h1>
   
@@ -181,6 +176,8 @@ const App: React.FC = () => {
         </div>
       )}
     </div>
+    <ChatComponent base64Image={base64Image} />
+  </div>
   );
 }
 

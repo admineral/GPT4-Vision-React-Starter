@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
     // Log the response received from OpenAI, which includes the analysis of the image.
     console.log('Received response from OpenAI');
-    console.log('Response:', JSON.stringify(response, null, 2)); // Log the response for debugging
+    //console.log('Response:', JSON.stringify(response, null, 2)); // Log the response for debugging
 
     // Extract and log the analysis from the response
     const analysis = response?.choices[0]?.message?.content;
