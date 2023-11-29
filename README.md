@@ -1,7 +1,7 @@
 
 # OpenAI GPT-4 Vision API Image Analyzer
 
-This project is a sleek and user-friendly web application built with React. It utilizes the cutting-edge capabilities of OpenAI's GPT-4 Vision API to analyze images and provide detailed descriptions of their content. With a simple drag-and-drop or file upload interface, users can quickly get insights into their images.
+This project is a sleek and user-friendly web application built with React/Nextjs. It utilizes the cutting-edge capabilities of OpenAI's GPT-4 Vision API to analyze images and provide detailed descriptions of their content. With a simple drag-and-drop or file upload interface, users can quickly get insights into their images.
 
 ## Features
 
@@ -12,28 +12,26 @@ This project is a sleek and user-friendly web application built with React. It u
 - Progress bar for upload status
 - Display of analysis results in a readable format
 
+
+
 ## Getting Started
 
 To run this project locally, follow these steps:
 
-### Prerequisites
 
-Ensure you have the following installed:
-- Node.js (LTS version recommended)
-- npm or yarn as your package manager
 
 ### Installation
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-github-username/openai-gpt4-vision-analyzer.git
+git clone https://github.com/admineral/GPT4-Vision-React-Starter.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd openai-gpt4-vision-analyzer
+cd GPT4-Vision-React-Starter
 ```
 
 3. Install the dependencies:
@@ -50,13 +48,18 @@ yarn install
 4. Create a `.env` file in the root directory and add your OpenAI API key:
 
 ```plaintext
-REACT_APP_OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 5. Start the development server:
 
 ```bash
 npm start
+```
+or 
+
+```bash
+npm run dev
 ```
 or with yarn:
 
@@ -77,12 +80,8 @@ To analyze an image:
 
 ## Built With
 
-- [React](https://reactjs.org/) - The web framework used
 - [OpenAI GPT-4 Vision API](https://beta.openai.com/docs/guides/vision) - Image analysis API
 
 
 
-## Acknowledgments
-
-- OpenAI team for providing the GPT-4 Vision API
 
