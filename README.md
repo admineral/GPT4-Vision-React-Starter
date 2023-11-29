@@ -1,7 +1,8 @@
 
 # OpenAI GPT-4 Vision API Image Analyzer
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-green.svg)](https://gpt-4-vision-react-starter.vercel.app)[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fadmineral%2FGPT4-Vision-React-Starter&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=gpt-4-vision-react-starter&repository-name=GPT4-Vision-React-Starter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fadmineral%2FGPT4-Vision-React-Starter&env=OPENAI_API_KEY&envDescription=OpenAI%20API%20Key&envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&project-name=gpt-4-vision-react-starter&repository-name=GPT4-Vision-React-Starter)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-green.svg)](https://gpt-4-vision-react-starter.vercel.app)
 
 
 
